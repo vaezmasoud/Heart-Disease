@@ -3,7 +3,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPClassifier
 
 # Load the dataset
-df = pd.read_csv('/content/heart_cleveland_upload.csv')
+df = pd.read_csv('https://github.com/vaezmasoud/Heart-Disease/blob/main/heart_cleveland.csv')
 # Separate features and labels
 X = df.drop('condition', axis=1)
 y = df['condition']

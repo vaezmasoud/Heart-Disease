@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import roc_curve, roc_auc_score
 
 # Load the dataset
-df = pd.read_csv('/content/heart_cleveland.csv')
+df = pd.read_csv('https://github.com/vaezmasoud/Heart-Disease/blob/main/heart_cleveland.csv')
 # Separate features and labels
 X = df.drop('condition', axis=1)
 y = df['condition']

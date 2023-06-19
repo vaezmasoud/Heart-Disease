@@ -1,7 +1,8 @@
 import pandas as pd
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import roc_auc_score
+import matplotlib.pyplot as plt
+from sklearn.metrics import roc_curve, roc_auc_score
 
 # Load the dataset
 df = pd.read_csv('https://github.com/vaezmasoud/Heart-Disease/blob/main/heart_cleveland.csv')
@@ -41,6 +42,18 @@ if prob[0][1]>= 0.5:
   print("condition: disease")
 else:
   print("condition: no disease")
+
+# Calculate the false positive rate, true positive rate, and thresholds
+fpr, tpr, thresholds = roc_curve(y_test, y_probs[:,1])
+
+# Plot the ROC curve
+plt.plot(fpr, tpr, label='ROC curve')
+plt.plot([0, 1], [0, 1], 'k--', label='Random guess')
+plt.xlabel('False positive rate')
+plt.ylabel('True positive rate')
+plt.title('ROC curve')
+plt.legend()
+plt.show()
 #------------------------------------------------------
 # Model: Multinomial Naive Bayes
 # Accuracy: 0.6

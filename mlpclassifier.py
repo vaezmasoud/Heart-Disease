@@ -1,10 +1,11 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPClassifier
-from sklearn.metrics import roc_auc_score
+import matplotlib.pyplot as plt
+from sklearn.metrics import roc_curve, roc_auc_score
 
 # Load the dataset
-df = pd.read_csv('https://github.com/vaezmasoud/Heart-Disease/blob/main/heart_cleveland.csv')
+df = pd.read_csv('/content/heart_cleveland.csv')
 # Separate features and labels
 X = df.drop('condition', axis=1)
 y = df['condition']
@@ -29,6 +30,17 @@ print('AUC:', auc)
 new_sample = [[63, 1, 3, 145, 233, 1, 0, 150, 0, 2.3, 0, 0, 1]]
 prob = model.predict_proba(new_sample)
 print('Probability of heart disease:', prob[0][1])
+
+#Calculate fpr and tpr for different threshold values
+fpr, tpr, thresholds = roc_curve(y_test, y_pred)
+
+#Plot the ROC curve
+plt.plot(fpr, tpr, label='ROC curve')
+plt.plot([0, 1], [0, 1], 'k--', label='Random guess')
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('ROC Curve')
+plt.show()
 #------------------------------------------------------
 # Algorithm: MLPClassifier (Multi-Layer Perceptron) - Multi-Layer Neural Networks
 # Accuracy: 0.5833333333333334

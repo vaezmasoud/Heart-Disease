@@ -1,6 +1,7 @@
 import pandas as pd
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import roc_auc_score
 
 # Load the dataset
 df = pd.read_csv('https://github.com/vaezmasoud/Heart-Disease/blob/main/heart_cleveland.csv')
@@ -23,6 +24,15 @@ model.fit(X_train, y_train)
 accuracy = model.score(X_test, y_test)
 print('Accuracy:', accuracy)
 
+# Predict the probabilities for the test set
+y_probs = model.predict_proba(X_test)
+
+# Calculate the AUC score
+auc = roc_auc_score(y_test, y_probs[:,1])
+
+# Print the AUC score
+print('AUC score:', auc)
+
 # Predict the probability for a new sample
 new_sample = [[63, 1, 3, 145, 233, 1, 0, 150, 0, 2.3, 0, 0, 1]]
 prob = model.predict_proba(new_sample)
@@ -34,3 +44,4 @@ else:
 #------------------------------------------------------
 # Model: Multinomial Naive Bayes
 # Accuracy: 0.6
+#AUC: 0.7399553571428571

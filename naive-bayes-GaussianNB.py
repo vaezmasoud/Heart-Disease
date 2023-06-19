@@ -1,10 +1,11 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
-from sklearn.metrics import roc_auc_score
+import matplotlib.pyplot as plt
+from sklearn.metrics import roc_curve, roc_auc_score
 
 # Load the dataset
-df = pd.read_csv('https://github.com/vaezmasoud/Heart-Disease/blob/main/heart_cleveland.csv')
+df = pd.read_csv('/content/heart_cleveland.csv')
 # Separate features and labels
 X = df.drop('condition', axis=1)
 y = df['condition']
@@ -37,6 +38,17 @@ if prob[0][1]>= 0.5:
   print("condition: disease")
 else:
   print("condition: no disease")
+
+#Calculate fpr and tpr for different threshold values
+fpr, tpr, thresholds = roc_curve(y_test, y_pred_proba)
+
+#Plot the ROC curve
+plt.plot(fpr, tpr, label='ROC curve')
+plt.plot([0, 1], [0, 1], 'k--', label='Random guess')
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('ROC Curve')
+plt.show()
 #------------------------------------------------------
 # Model: Gaussian Naive Bayes
 # Accuracy: 0.7666666666666667

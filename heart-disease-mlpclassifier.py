@@ -23,3 +23,6 @@ print('Accuracy:', accuracy)
 new_sample = [[63, 1, 3, 145, 233, 1, 0, 150, 0, 2.3, 0, 0, 1]]
 prob = model.predict_proba(new_sample)
 print('Probability of heart disease:', prob[0][1])
+#------------------------------------------------------
+# Algorithm: MLPClassifier (Multi-Layer Perceptron) - Multi-Layer Neural Networks
+# Accuracy: 0.5833333333333334

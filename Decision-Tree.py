@@ -21,7 +21,8 @@ y_pred_proba = classifier.predict_proba(X_test)[:, 1]
 auc = roc_auc_score(y_test, y_pred_proba)
 print(f"AUC: {auc}")
 
-new_data = [[63, 1, 3, 145, 233, 1, 0, 150, 0, 2.3, 0, 0, 1]]
+new_data = [[60, 1, 0, 130, 233, 1, 2, 150, 0, 2.3, 1, 0, 3]]
+# [[63, 1, 3, 145, 233, 1, 0, 150, 0, 2.3, 0, 0, 1]]
 prediction = classifier.predict(new_data)
 print(f"Prediction: {prediction}")
 #------------------------------------------------------
